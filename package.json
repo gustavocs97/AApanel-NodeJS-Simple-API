@@ -1,0 +1,13 @@
+{
+  "name": "aquecimentodashboard-dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard para monitorar o status de instâncias em subdominio.dominio.com",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "install-dependencies": "npm install"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
