@@ -79,37 +79,77 @@ location ^~ /api/ {
 
 Esse proxy garantirá que todas as requisições enviadas para `/api` no subdomínio sejam redirecionadas para o Node.js rodando na porta **3000**.
 
+Aqui está a versão aprimorada da seção de como subir o projeto, com mais clareza e fluxo:
+
 ---
 
 ## **4. Subindo o Projeto**
 
-### 4.1. Clonar ou criar o projeto
+### 4.1. Clonar ou Criar o Projeto
 
-Navegue até o diretório raiz do subdomínio:
+Primeiro, navegue até o diretório raiz do seu subdomínio onde o projeto será hospedado:
 
 ```bash
 cd /www/wwwroot/subdominio.dominio.com
 ```
 
-Clone ou crie o projeto no diretório desejado.
+Aqui, você tem duas opções:
+
+1. **Clonar o projeto** de um repositório Git:
+
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git .
+   ```
+
+2. **Criar o projeto manualmente** no diretório desejado.
+
+---
 
 ### 4.2. Instalar Dependências
 
-Com o projeto configurado, execute:
+Agora, instale as dependências do Node.js. Você pode fazer isso de duas maneiras:
+
+#### Opção 1: Instalação Manual
+
+No diretório raiz do projeto, execute:
 
 ```bash
 npm install
 ```
 
+Isso instalará todas as bibliotecas e pacotes definidos no arquivo `package.json`.
+
+#### Opção 2: Usar o Script Automatizado
+
+Se preferir automatizar a configuração e instalação, use o script que já foi preparado:
+
+1. **Dar permissão de execução ao script**:
+
+   ```bash
+   chmod +x script-modelo-template-boilerplate.sh
+   ```
+
+2. **Executar o script** para configurar o projeto e instalar as dependências automaticamente:
+
+   ```bash
+   ./script-modelo-template-boilerplate.sh
+   ```
+
+---
+
 ### 4.3. Iniciar o Servidor Node.js
 
-Inicie o servidor com o seguinte comando:
+Após a instalação das dependências, você pode iniciar o servidor Node.js com o comando:
 
 ```bash
 npm start
 ```
 
----
+Isso fará o servidor rodar na porta configurada (padrão: 3000) e ficará acessível através do subdomínio configurado com o **reverse proxy**.
+
+--- 
+
+Com essas opções, você pode facilmente configurar o ambiente e subir o servidor, seja manualmente ou com a ajuda do script automatizado, conforme sua preferência.
 
 ## **5. Configuração de Segurança e Otimização**
 
@@ -259,4 +299,3 @@ sudo npm start
 --- 
 
 Este guia cobre todas as etapas para configurar, rodar e automatizar seu projeto **Node.js** com aaPanel e **Nginx**.
-
