@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status de Instâncias - aquecimentodashboard TM </title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: #333; }
+    .count { margin-top: 20px; font-size: 1.5em; }
+  </style>
+</head>
+<body>
+  <h1>Status de Instâncias</h1>
+  <div class="count">
+    <p><strong>Open Count:</strong> <span id="openCount">Carregando...</span></p>
+    <p><strong>Closed Count:</strong> <span id="closedCount">Carregando...</span></p>
+  </div>
+
+  <script>
+    function updateCounts() {
+      fetch('/api/status')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('openCount').textContent = data.openCount;
+          document.getElementById('closedCount').textContent = data.closedCount;
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados:', error);
+        });
+    }
+
+    updateCounts();
+    setInterval(updateCounts, 5 * 1000); // Atualiza a cada 5 segundos
+    
+  </script>
+</body>
+</html>
