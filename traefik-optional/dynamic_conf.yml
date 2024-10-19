@@ -1,0 +1,46 @@
+# Configuração TLS padrão
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: "/certificates/{{ domainName }}.key"
+
+# Configuração de middlewares HTTP
+http:
+  middlewares:
+    # Middleware para redirecionar HTTP para HTTPS
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+    # Middleware para autenticação básica
+    loginsimples:
+      basicAuth:
+        users:
+          - "usuario1:hashed1"
+          - "admin1:hashed2"
+
+  routers:
+    # Template de router para o subdomínio
+    {{ subdomainName }}:
+      rule: "Host(`{{ subdomainName }}.{{ domainName }}`)"
+      entryPoints:
+        - web
+        - websecure
+      tls:
+        certResolver: default
+      service: {{ subdomainName }}-service
+      middlewares:
+        - redirect-to-https
+
+  services:
+    # Template de service para o subdomínio
+    {{ subdomainName }}-service:
+      loadBalancer:
+        servers:
+          - url: "http://aapanel:80"  # Ajuste a porta conforme necessário pelo nome do serviço geralmente
+
+# Configuração de serviço de transporte para ignorar verificações de certificados inválidos
+serversTransport:
+  insecureSkipVerify: true
